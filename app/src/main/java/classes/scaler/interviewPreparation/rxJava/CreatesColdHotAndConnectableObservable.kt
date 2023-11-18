@@ -39,8 +39,7 @@ private fun createColdObservable() {
  */
 private fun createHotAndConnectableObservable() {
     val observable: ConnectableObservable<Int> =
-        Observable.just(1, 2, 3, 4, 5)
-            .publish()
+        Observable.just(1, 2, 3, 4, 5).publish()
     observable.subscribe { item: Int ->
         println(
             "Observer 1: $item"

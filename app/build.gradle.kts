@@ -50,5 +50,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-reactivestreams-ktx:2.6.2")
 
-    implementation("io.reactivex.rxjava3:rxjava:3.0.9")
+    implementation("io.reactivex.rxjava3:rxjava:3.1.5")
+    implementation("io.reactivex.rxjava3:rxandroid:3.0.2")
 }

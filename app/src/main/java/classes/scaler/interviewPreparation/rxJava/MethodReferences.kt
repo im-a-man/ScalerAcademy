@@ -61,12 +61,13 @@ fun main() {
 
         }
     })
-    //Here Runnable is functional interface because it has only one abstract method(non-implemented),
+    //Here Runnable is functional interface because it has only one abstract method(non-implemented) run(){},
     // but a functional interface can have static and default methods in it.
 
     fun runIt() {
         //Its signature is the same as run method of runnable.
     }
+
     val functionalInterface1 = Thread(::runIt) //Method reference
 
     //Note=> In method references we do not need to write parentheses.

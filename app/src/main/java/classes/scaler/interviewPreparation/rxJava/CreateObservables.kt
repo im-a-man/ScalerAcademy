@@ -1,6 +1,7 @@
 package classes.scaler.interviewPreparation.rxJava
 
 import io.reactivex.rxjava3.core.Observable
+import java.util.concurrent.Callable
 
 /**
 => Observable Creation Methods:
@@ -61,6 +62,11 @@ fun main() {
     createObservableWithJust()
     createObservableFromIterable()
     createObservableUsingCreate()
+    createObservableUsingEmpty()
+    createObservableUsingNever()
+    createObservableUsingRange()
+    createObservableUsingDefer()
+    createObservableUsingFromCallable()
 }
 
 /**
@@ -107,4 +113,72 @@ private fun createObservableUsingCreate() {
     observable.subscribe({ item -> System.out.println(item) },
         { error -> System.out.println("There was error: " + error.getLocalizedMessage()) }
     ) { println("Completed") }
+}
+
+fun createObservableUsingEmpty() {
+    val observable = Observable.empty<Int>()
+    observable.subscribe(
+        ::println,
+        ::println
+    ) { println("createObservableUsingEmpty: OnCompleted") }
+}
+
+fun createObservableUsingNever() {
+    val observable = Observable.never<Int>()
+    observable.subscribe(
+        ::println,
+        ::println
+    ) { println("createObservableUsingNever: OnCompleted") }
+}
+
+//Create a Observable with range() factory method
+fun createObservableUsingRange() {//The Reactive Loop
+    val observable = Observable.range(0, 10)
+    observable.subscribe(::println)
+    //----------------------------------------------------------------
+    val start = 5
+    var count = 2
+    // it prints from start up to (start + count - 1)
+    val observable1 = Observable.range(start, count)
+    observable1.subscribe(::println)
+
+    count = 3
+    observable1.subscribe(::println)//Will get the same instance of observable that was created with count 2
+    //This mean in range() we get same instance of observable for it's all observer
+    //But this not the Reactive means we know...
+}
+
+//Create a Observable with defer() factory method
+fun createObservableUsingDefer() {//The Reactive Loop
+    val start = 5
+    var count = 2
+    val observable = Observable.defer {
+        println("Returns new Observable with defer() factory method for each observers")
+        Observable.range(start, count)
+    }
+    observable.subscribe({ onNext -> println(onNext) }, { onError -> }, { println("OnCompleted") })
+
+    count = 3
+    observable.subscribe(::println)
+    //We'll see here that a new ObservableSource will be created for,
+    //this new observer with new count value because of the defer
+}
+
+fun createObservableUsingFromCallable() {
+    val observable: Observable<Int> = Observable.fromCallable(
+        Callable<Int> {
+            println("Calling Method")
+            getNumber()
+        })
+    observable.subscribe({ o: Int? -> println(o) })
+    { error: Throwable -> println("An Exception Occurred" + error.localizedMessage) }
+}
+
+/***
+ * This method returns an expression which is an int
+ * @return a dummy expression (int)
+ */
+private fun getNumber(): Int {
+    println("Generating Value")
+    return 1 / 0
 }

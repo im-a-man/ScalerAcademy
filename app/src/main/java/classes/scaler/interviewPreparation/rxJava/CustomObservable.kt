@@ -3,6 +3,8 @@ package classes.scaler.interviewPreparation.rxJava
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableEmitter
 import io.reactivex.rxjava3.core.ObservableOnSubscribe
+import io.reactivex.rxjava3.core.ObservableOperator
+import io.reactivex.rxjava3.core.Observer
 
 /**
 We can create custom observables using 2 interfaces.
@@ -51,5 +53,26 @@ class FibonacciObservable(private val fibonacciOf: Int) : ObservableOnSubscribe<
             second = next
         }
         emitter.onComplete()
+    }
+}
+
+
+//Wrong implementation of ObservableOperator
+class FibonacciObservableOperator(private val fibonacciOf: Int) : ObservableOperator<Int, Int> {
+    override fun apply(observer: Observer<in Int>): Observer<in Int> {
+        var first = 0
+        var second = 1
+        observer.onNext(first)
+        observer.onNext(second)
+
+        for (i in 2..fibonacciOf) {
+            val next = first + second
+            observer.onNext(next)
+            // Update values for the next iteration
+            first = second
+            second = next
+        }
+        observer.onComplete()
+        return observer
     }
 }
