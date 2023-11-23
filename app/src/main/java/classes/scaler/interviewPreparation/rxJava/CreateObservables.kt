@@ -2,6 +2,7 @@ package classes.scaler.interviewPreparation.rxJava
 
 import io.reactivex.rxjava3.core.Observable
 import java.util.concurrent.Callable
+import java.util.concurrent.TimeUnit
 
 /**
 => Observable Creation Methods:
@@ -67,6 +68,7 @@ fun main() {
     createObservableUsingRange()
     createObservableUsingDefer()
     createObservableUsingFromCallable()
+    createObservableUsingInterval()
 }
 
 /**
@@ -164,6 +166,12 @@ fun createObservableUsingDefer() {//The Reactive Loop
     //this new observer with new count value because of the defer
 }
 
+
+/**
+ * This allows you to defer the execution of the function you
+ * specify until an observer subscribes to the Observable.
+ * That is to say, it makes the function "lazy."
+ * */
 fun createObservableUsingFromCallable() {
     val observable: Observable<Int> = Observable.fromCallable(
         Callable<Int> {
@@ -174,11 +182,48 @@ fun createObservableUsingFromCallable() {
     { error: Throwable -> println("An Exception Occurred" + error.localizedMessage) }
 }
 
-/***
+/**
  * This method returns an expression which is an int
  * @return a dummy expression (int)
  */
 private fun getNumber(): Int {
     println("Generating Value")
     return 1 / 0
+}
+
+/**
+ * Returns an Observable that emits a sequential number every specified interval of time.
+ * */
+fun createObservableUsingInterval() {
+    //Runs on Computation Scheduler
+    val observable: Observable<*> = Observable.interval(1, TimeUnit.SECONDS)
+
+    observable.subscribe { item: Any ->
+        println(
+            "Observer 1: $item"
+        )
+    }
+
+    pause(2000)
+
+    observable.subscribe { item: Any ->
+        println(
+            "Observer 2: $item"
+        )
+    }
+
+    pause(3000)
+}
+
+/**
+ * This method sleep the main thread for specified duration
+ *
+ * @param duration Sleep Duration in Milliseconds
+ */
+private fun pause(duration: Int) {
+    try {
+        Thread.sleep(duration.toLong())
+    } catch (e: InterruptedException) {
+        e.printStackTrace()
+    }
 }
