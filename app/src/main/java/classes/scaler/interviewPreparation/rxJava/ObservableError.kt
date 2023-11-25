@@ -1,6 +1,7 @@
 package classes.scaler.interviewPreparation.rxJava
 
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.functions.Supplier
 
 
 /**
@@ -42,13 +43,13 @@ private fun throwException() {
  * So their Observers gets a new instance of exception on onError() every time
  */
 private fun throwExceptionUsingCallable() {
-    val observable: Observable<Exception> = Observable.error {
+    val observable: Observable<Exception> = Observable.error(Supplier {
 
         // We're printing this message to show that new instance gets created before
         // publishing the error to their Observers
         println("New Exception Created")
         Exception("An Exception")
-    }
+    })
     observable.subscribe(System.out::println) { error ->
         System.out.println(
             "Error 1: " + error.hashCode()
