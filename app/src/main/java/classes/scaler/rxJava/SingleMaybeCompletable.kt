@@ -1,4 +1,4 @@
-package classes.scaler.interviewPreparation.rxJava
+package classes.scaler.rxJava
 
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.CompletableObserver

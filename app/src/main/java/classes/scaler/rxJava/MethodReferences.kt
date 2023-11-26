@@ -1,4 +1,4 @@
-package classes.scaler.interviewPreparation.rxJava
+package classes.scaler.rxJava
 
 /**
 In Java, method references provide a shorthand syntax for writing lambda expressions.

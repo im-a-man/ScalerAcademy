@@ -1,4 +1,4 @@
-package classes.scaler.interviewPreparation.rxJava
+package classes.scaler.rxJava
 
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.observables.ConnectableObservable
