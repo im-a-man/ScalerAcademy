@@ -43,11 +43,29 @@ fun isPalindrome(input: String): Boolean {
     return false
 }
 
+fun checkPalindrome(input: String): Boolean {
+    var left = 0
+    var right = input.length - 1
+    while (left < right) {
+        if (input[left] != input[right])
+            return false
+        left++
+        right--
+    }
+    return true
+}
+
 fun main() {
     val input = "madam"
     val result = isPalindrome(input)
+    val result1 = checkPalindrome(input)
 
     if (result) {
+        println("The string is a palindrome.")
+    } else {
+        println("The string is not a palindrome.")
+    }
+    if (result1) {
         println("The string is a palindrome.")
     } else {
         println("The string is not a palindrome.")

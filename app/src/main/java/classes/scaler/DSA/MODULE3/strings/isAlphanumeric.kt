@@ -47,15 +47,5 @@ fun isAlpha(arr: Array<Char>): Int {
             isAlpha = 0
         }
     }
-    /*arr.forEach {
-        isAlpha = when (it) {
-            !in 65..90, !in 97..122, !in 48..57 -> {
-                0
-            }
-            !in 'A'..'Z', !in 'a'..'z', !in '0'..'9' -> {
-                0
-            }
-        }
-    }*/
     return isAlpha
 }

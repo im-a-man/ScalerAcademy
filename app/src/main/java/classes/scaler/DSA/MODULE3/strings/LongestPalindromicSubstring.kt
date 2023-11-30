@@ -49,9 +49,9 @@ fun main() {
 }
 
 fun longestPalindromicSubstring(input: String): String {
-    fun expand(input: String, l: Int, r: Int): String {
-        var l = l//left
-        var r = r//right
+    fun expand(input: String, left: Int, right: Int): String {
+        var l = left//left
+        var r = right//right
 
         while (l >= 0 && r < input.length) {
             if (input[l] == input[r]) {
@@ -69,6 +69,7 @@ fun longestPalindromicSubstring(input: String): String {
         val oddPalindrome = expand(input, i - 1, i + 1)
         val evenPalindrome = expand(input, i, i + 1)
 
+//        maxOf(maxLengthSubString, oddPalindrome, evenPalindrome)
         var greater = oddPalindrome
         if (greater.length < evenPalindrome.length) {
             greater = evenPalindrome

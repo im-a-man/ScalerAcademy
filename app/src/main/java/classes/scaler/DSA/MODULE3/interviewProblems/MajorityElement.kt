@@ -1,4 +1,4 @@
-package classes.scaler.DSA.MODULE3
+package classes.scaler.DSA.MODULE3.interviewProblems
 
 /**
 Problem Description
@@ -53,12 +53,13 @@ fun findMajorityElement(A: IntArray, n: Int): Int {
     var majorityElement = A[0]
     var frequency = 1
     for (i in 1 until n) {
-        if (majorityElement == A[i])
-            frequency++
-        else frequency--
         if (frequency == 0) {
             majorityElement = A[i]
             frequency = 1
+        } else if (majorityElement == A[i]) {
+            frequency++
+        } else {
+            frequency--
         }
     }
     return majorityElement
@@ -66,11 +67,16 @@ fun findMajorityElement(A: IntArray, n: Int): Int {
 
 fun checkingAndVerifyingMajorityElement(A: IntArray): Int {
     val n = A.size
+
+    //Finding the majority element
     val majorityElement = findMajorityElement(A, n)
-    val threshold = n / 2
+
+    //Verifying the majority element
     var frequency = 0
     for (i in 0 until n) {
         if (A[i] == majorityElement) frequency++
     }
+
+    val threshold = n / 2
     return if (frequency > threshold) majorityElement else -1
 }

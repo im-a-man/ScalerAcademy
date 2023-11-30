@@ -1,5 +1,6 @@
 package classes.scaler.interviewPreparation.codingProblems
 
+
 fun main() {
     val target = 7
     val nums = intArrayOf(2, 3, 1, 2, 4, 3)

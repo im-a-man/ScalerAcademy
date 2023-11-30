@@ -1,7 +1,7 @@
 package classes.scaler.DSA.MODULE3.strings
 
 fun main() {
-    println(reverseWholeString("abcdef").concatToString())
+    println(reverseWholeString("the sky is blue").concatToString())
 
     val input = "the sky is blue"
     val output = reverseWords(input)

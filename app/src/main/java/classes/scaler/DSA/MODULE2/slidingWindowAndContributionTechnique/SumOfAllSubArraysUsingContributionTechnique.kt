@@ -45,11 +45,23 @@ fun main() {
     println(subArraySum(intArrayOf(2, 1, 3)))
 }
 
-fun subArraySum(A: IntArray): Long {
-    var ans: Long = 0L
+//Sum of all sub arrays use contribution technique
+fun subArraySum(A: IntArray): Int {
+    val N = A.size
+    var ans = 0
     for (i in A.indices) {
-        val contribution: Long = A[i].toLong() * (i + 1) * (A.size - i)
+        val contribution = A[i] * ((i + 1) * (N - i))
         ans += contribution
     }
+    /**
+    * So to find the contribution of an element in all sub array sum is
+     * We've to check the options for start index and options for end index and multiply them
+     *
+     * Like To find the contribution of i element
+     * options for start index for i is => [0,i] => [i - 0 + 1] => (i+1)
+     * options for end index for i is => [i,N-1] => [(N-1) - i + 1] => (N-i)
+     * Now multiplies the options with element to find the contribution of i element
+     * (iElement * (i+1) * (N-i)) and add all the element's contribution to ans
+    * */
     return ans
 }

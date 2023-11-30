@@ -1,4 +1,4 @@
-package classes.scaler.DSA.MODULE3
+package classes.scaler.DSA.MODULE3.interviewProblems
 
 /**
 Problem Description
@@ -35,19 +35,21 @@ Explanation 1:
 1 occurs 3 times which is more than 5/3 times.
 Explanation 2:
 No element occurs more than 3 / 3 = 1 times in the array.
-* */
+ * */
 
 //Same as majority elements but here is N/3, so we can remove 3 distinct elements
 fun main() {
     println(repeatedNumber(intArrayOf(1, 1, 1, 2, 3, 5, 7)))//Wrong program for N/3
 }
+
 //boyer moore voting algorithm
 fun repeatedNumber(A: IntArray): Int {
     //First finding the majority elements
     val n = A.size
+
     var c1 = 0
     var c2 = 0
-    var num1 = -1 // first majority element
+    var num1 = -1 //first majority element
     var num2 = -1 //second majority element
     for (i in 0 until n) {
         val ele = A[i]
@@ -80,10 +82,10 @@ fun repeatedNumber(A: IntArray): Int {
     }
 
     //Then returning the answers accordingly
-    if (num1Count > n / 3) {
-        return num1
+    return if (num1Count > n / 3) {
+        num1
     } else if (num2Count > n / 3) {
-        return num2
-    }
-    return -1
+        num2
+    } else
+        -1
 }

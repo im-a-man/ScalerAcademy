@@ -1,4 +1,4 @@
-package classes.scaler.DSA.MODULE3
+package classes.scaler.DSA.MODULE3.interviewProblems
 
 /**
 Given a binary string A. It is allowed to do at most one swap between any 0 and 1.
@@ -27,14 +27,15 @@ Output 2:
  * */
 
 fun main() {
-    println(lengthOfLongestConsecutiveOnes("111000"))
-    println(lengthOfLongestConsecutiveOnes("111011101"))
+    println(lengthOfLongestConsecutiveOnesAfterSwap("111000"))
+    println(lengthOfLongestConsecutiveOnesAfterSwap("111011101"))
 }
 
-fun lengthOfLongestConsecutiveOnes(arr: String): Int {
+fun lengthOfLongestConsecutiveOnesAfterSwap(arr: String): Int {
     val array = arr.toCharArray()
 
     var answer = 0
+
     var totalOnce = 0
     for (i in array.indices)
         if (array[i] == '1') totalOnce += 1
@@ -53,6 +54,7 @@ fun lengthOfLongestConsecutiveOnes(arr: String): Int {
             for (j in i + 1 until array.size)
                 if (array[j] == '1') right += 1
                 else break
+
             if ((left + right) < totalOnce)
                 answer = maxOf(answer, left + right + 1)
             else
