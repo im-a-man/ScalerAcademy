@@ -318,6 +318,75 @@ private fun useSortedOnNonComparator() {
         }
 }
 
+/**
+ * Used 'delay' operator to add a delay before the Observable start emission
+ * Note: 'delay' doesn't delay each emission, instead it delays the start of the emission
+ */
+private fun createObservableUsingDelay() {
+    Observable.just(1, 2, 3, 4, 5)
+        .delay(3000, TimeUnit.MILLISECONDS)
+        .subscribe { o: Int? ->
+            println(
+                o
+            )
+        }
+    pause(5000)
+}
+
+/**
+ * 'delay' operator doesn't add any delay before emitting error
+ * This means the error is immediately emitted to it's subscribers by default
+ * To delay the emission of error we need to pass delayError parameter as true
+ */
+private fun createObservableUsingDelayError() {
+    Observable.error<Any>(Exception("Error"))
+        .delay(3, TimeUnit.SECONDS, true)
+        .subscribe(
+            { o: Any? -> println(o) },
+            { error: Throwable ->
+                println(
+                    error.localizedMessage
+                )
+            }
+        ) { println("Completed") }
+    pause(5000)
+}
+
+/**
+ * contains operator checks if the number exist in the Observable emission
+ * As soon as it gets the item it emits true or false otherwise
+ */
+private fun containsWithPremitive() {
+    Observable.just(1, 2, 3, 4, 5)
+        .contains(3)
+        .subscribe { o: Boolean? ->
+            println(
+                o
+            )
+        }
+}
+
+/**
+ * contains operator checks if the specific object exist in the Observable emission
+ * based on the Object's hashcode
+ * As soon as it gets the item it emits true or false otherwise
+ */
+private fun containsWithNonPremitive() {
+    val user = User("mroydroid")
+    Observable.just(user)
+        .contains(user)
+        .subscribe { o: Boolean? ->
+            println(
+                o
+            )
+        }
+}
+
+/**
+ * a static class for demonstration purpose
+ */
+internal class User(var name: String)
+
 fun main() {
     mapOperator()
     mapOperatorReturnsDifferentData()
@@ -345,4 +414,13 @@ fun main() {
     useSorted()
     useSortedWithOwnComparator()
     useSortedOnNonComparator()
+
+    createObservableUsingDelay()
+    createObservableUsingDelayError()
+
+    containsWithPremitive()
+    containsWithNonPremitive()
+
+    //Error Handling Operators
+
 }

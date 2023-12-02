@@ -60,14 +60,14 @@ observeOn
  */
 
 fun main() {
-    createObservableWithJust()
-    createObservableFromIterable()
-    createObservableUsingCreate()
+    createObservableWithJust()//It takes between one to ten parameters. when you have a fixed set of items that you want to emit.
+    createObservableFromIterable()//when you want to convert other data structures or objects into Observables.
+    createObservableUsingCreate()//It allows you to manually emit items, errors, and completion signals using the Emitter provided in the subscribe method.
     createObservableUsingEmpty()
     createObservableUsingNever()
     createObservableUsingRange()
     createObservableUsingDefer()
-    createObservableUsingFromCallable()
+    createObservableUsingFromCallable()//makes the lazy observable, when you want to convert other data structures or objects into Observables.
     createObservableUsingInterval()
 }
 
@@ -193,6 +193,7 @@ private fun getNumber(): Int {
 
 /**
  * Returns an Observable that emits a sequential number every specified interval of time.
+ * delays the each emission.
  * */
 fun createObservableUsingInterval() {
     //Runs on Computation Scheduler
