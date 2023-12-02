@@ -55,7 +55,7 @@ fun insert(intervals: ArrayList<Interval>, newInterval: Interval): ArrayList<Int
         } else if (intervals[i].start > right) {
             //Not overlapped
             answer.add(Interval(left, right))
-            for (j in i until intervals.size){
+            for (j in i until intervals.size) {
                 answer.add(intervals[j])
             }
             return answer

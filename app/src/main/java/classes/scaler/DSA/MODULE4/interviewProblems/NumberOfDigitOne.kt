@@ -35,12 +35,13 @@ Digit 1 appears in 1(1 time) , 10(1 time) and 11(2 times) only. So the answer is
 
 fun main() {
     println(solve(10))
-    println(solve1(10))
     println(solve(11))
+    println(solve1(10))
     println(solve1(11))
 }
 
 fun solve(A: Int): Int {
+    //I'll ask this to sir
     if (A == 0) return 0
     var ans = 0
     var i = 1

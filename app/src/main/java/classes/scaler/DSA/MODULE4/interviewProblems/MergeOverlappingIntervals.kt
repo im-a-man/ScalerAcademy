@@ -48,20 +48,20 @@ fun main() {
 fun merge(intervals: ArrayList<Interval>): ArrayList<Interval> {
     intervals.sortWith(Comparator { a: Interval, b: Interval -> a.start - b.start })
     // Write your code here.
-    val interval: ArrayList<Interval> = arrayListOf()
+    val answer: ArrayList<Interval> = arrayListOf()
     var left = intervals[0].start
     var right = intervals[0].end
     for (i in 1 until intervals.size) {
         if (intervals[i].start <= right) {
             right = maxOf(right, intervals[i].end)
         } else {
-            interval.add(Interval(left, right))
+            answer.add(Interval(left, right))
             left = intervals[i].start
             right = intervals[i].end
         }
     }
-    interval.add(Interval(left, right))
-    return interval
+    answer.add(Interval(left, right))
+    return answer
 }
 
 data class Interval(val start: Int, val end: Int)

@@ -50,6 +50,7 @@ fun main() {
 }
 
 fun firstMissingPositive(A: IntArray): Int {
+    //first place all the elements at their valid index, neglecting negatives and out of range elements
     for (i in A.indices) {
         while (A[i] != (i + 1) && (A[i] in 1..A.size)) {
             val value = A[i]
@@ -61,6 +62,7 @@ fun firstMissingPositive(A: IntArray): Int {
             A[value - 1] = temp
         }
     }
+    //Then
     for (i in A.indices) {
         if (A[i] != (i + 1))
             return i + 1
