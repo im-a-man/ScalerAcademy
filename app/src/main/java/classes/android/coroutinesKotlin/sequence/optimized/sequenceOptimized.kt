@@ -1,6 +1,6 @@
-package sequence.optimized
+package classes.android.coroutinesKotlin.sequence.optimized
 
-import sequence.*
+import classes.android.coroutinesKotlin.sequence.SequenceScope
 import kotlin.coroutines.*
 import kotlin.coroutines.intrinsics.*
 

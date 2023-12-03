@@ -1,4 +1,4 @@
-package sequence
+package classes.android.coroutinesKotlin.sequence
 
 import java.io.*
 

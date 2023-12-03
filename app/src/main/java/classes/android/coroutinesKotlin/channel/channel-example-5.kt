@@ -1,6 +1,11 @@
 package channel.example5
 
 import channel.*
+import classes.android.coroutinesKotlin.channel.Channel
+import classes.android.coroutinesKotlin.channel.ReceiveChannel
+import classes.android.coroutinesKotlin.channel.SendChannel
+import classes.android.coroutinesKotlin.channel.go
+import classes.android.coroutinesKotlin.channel.mainBlocking
 
 // https://tour.golang.org/concurrency/5
 

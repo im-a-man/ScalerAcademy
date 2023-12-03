@@ -1,6 +1,9 @@
 package channel
 
-import delay.*
+import classes.android.coroutinesKotlin.channel.Channel
+import classes.android.coroutinesKotlin.channel.ReceiveChannel
+import classes.android.coroutinesKotlin.channel.go
+import classes.android.coroutinesKotlin.delay.delay
 import java.time.*
 
 object Time {

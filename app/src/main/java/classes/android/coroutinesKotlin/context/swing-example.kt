@@ -1,7 +1,7 @@
-package context
+package classes.android.coroutinesKotlin.context
 
-import run.*
-import util.*
+import classes.android.coroutinesKotlin.run.launch
+import classes.android.coroutinesKotlin.util.log
 import java.util.concurrent.*
 import kotlin.coroutines.*
 

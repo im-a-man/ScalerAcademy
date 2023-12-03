@@ -1,4 +1,4 @@
-package sequence.optimized
+package classes.android.coroutinesKotlin.sequence.optimized
 
 val fibonacci: Sequence<Int> = sequence {
     yield(1) // first Fibonacci number

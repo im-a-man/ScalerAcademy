@@ -1,8 +1,9 @@
-package context
+package classes.android.coroutinesKotlin.context
 
+import classes.android.coroutinesKotlin.future.await
+import classes.android.coroutinesKotlin.run.runBlocking
+import classes.android.coroutinesKotlin.util.log
 import future.*
-import run.*
-import util.*
 
 fun main(args: Array<String>) = runBlocking(CommonPool) {
     // multithreaded pool

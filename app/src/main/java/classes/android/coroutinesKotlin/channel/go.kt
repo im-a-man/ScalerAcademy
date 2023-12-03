@@ -1,7 +1,7 @@
-package channel
+package classes.android.coroutinesKotlin.channel
 
-import context.*
-import run.*
+import classes.android.coroutinesKotlin.context.CommonPool
+import classes.android.coroutinesKotlin.run.runBlocking
 
 fun mainBlocking(block: suspend () -> Unit) = runBlocking(CommonPool, block)
 

@@ -1,5 +1,12 @@
 package channel
 
+import classes.android.coroutinesKotlin.channel.DefaultCase
+import classes.android.coroutinesKotlin.channel.ReceiveCase
+import classes.android.coroutinesKotlin.channel.ReceiveChannel
+import classes.android.coroutinesKotlin.channel.SelectCase
+import classes.android.coroutinesKotlin.channel.Selector
+import classes.android.coroutinesKotlin.channel.SendCase
+import classes.android.coroutinesKotlin.channel.SendChannel
 import kotlin.coroutines.*
 
 suspend inline fun <R> select(block: SelectorBuilder<R>.() -> Unit): R =

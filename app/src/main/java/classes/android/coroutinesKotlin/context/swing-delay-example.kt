@@ -1,7 +1,7 @@
-package context
+package classes.android.coroutinesKotlin.context
 
+import classes.android.coroutinesKotlin.util.log
 import future.*
-import util.*
 
 fun main(args: Array<String>) {
     future(Swing) {

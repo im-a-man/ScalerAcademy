@@ -1,4 +1,4 @@
-package sequence
+package classes.android.coroutinesKotlin.sequence
 
 // inferred type is Sequence<Int>
 val fibonacci = sequence {

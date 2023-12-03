@@ -1,8 +1,8 @@
-package delay
+package classes.android.coroutinesKotlin.delay
 
-import context.*
+import classes.android.coroutinesKotlin.context.Swing
+import classes.android.coroutinesKotlin.util.log
 import future.*
-import util.*
 
 fun main(args: Array<String>) {
     future(Swing) {

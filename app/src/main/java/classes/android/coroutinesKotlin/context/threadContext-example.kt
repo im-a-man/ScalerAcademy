@@ -1,8 +1,9 @@
-package context
+package classes.android.coroutinesKotlin.context
 
-import delay.*
+import classes.android.coroutinesKotlin.delay.delay
+import classes.android.coroutinesKotlin.future.await
+import classes.android.coroutinesKotlin.util.log
 import future.*
-import util.*
 
 fun main(args: Array<String>) {
     log("Starting MyEventThread")

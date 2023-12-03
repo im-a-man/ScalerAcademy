@@ -1,4 +1,4 @@
-package context
+package classes.android.coroutinesKotlin.context
 
 import javax.swing.*
 import kotlin.coroutines.*
@@ -12,6 +12,6 @@ private class SwingContinuation<T>(val cont: Continuation<T>) : Continuation<T> 
     override val context: CoroutineContext = cont.context
 
     override fun resumeWith(result: Result<T>) {
-        SwingUtilities.invokeLater { cont.resumeWith(result) }
+        //SwingUtilities.invokeLater { cont.resumeWith(result) }
     }
 }

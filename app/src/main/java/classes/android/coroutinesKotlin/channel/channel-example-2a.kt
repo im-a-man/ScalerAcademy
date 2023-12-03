@@ -1,6 +1,9 @@
 package channel.example2a
 
-import channel.*
+import classes.android.coroutinesKotlin.channel.Channel
+import classes.android.coroutinesKotlin.channel.SendChannel
+import classes.android.coroutinesKotlin.channel.go
+import classes.android.coroutinesKotlin.channel.mainBlocking
 import kotlin.system.*
 
 suspend fun sum(s: List<Int>, c: SendChannel<Int>) {

@@ -1,5 +1,6 @@
-package sequence
+package classes.android.coroutinesKotlin.sequence
 
+import androidx.annotation.experimental.UseExperimental
 import kotlin.coroutines.*
 import kotlin.experimental.*
 
@@ -8,7 +9,8 @@ interface SequenceScope<in T> {
     suspend fun yield(value: T)
 }
 
-@UseExperimental(ExperimentalTypeInference::class)
+@OptIn(ExperimentalTypeInference::class)
+@UseExperimental(UseExperimental::class)
 fun <T> sequence(@BuilderInference block: suspend SequenceScope<T>.() -> Unit): Sequence<T> = Sequence {
     SequenceCoroutine<T>().apply {
         nextStep = block.createCoroutine(receiver = this, completion = this)

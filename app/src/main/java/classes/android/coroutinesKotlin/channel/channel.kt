@@ -1,4 +1,4 @@
-package channel
+package classes.android.coroutinesKotlin.channel
 
 import java.util.*
 import java.util.concurrent.atomic.*
@@ -28,7 +28,10 @@ private const val CHANNEL_CLOSED = "Channel was closed"
 private val channelCounter = AtomicLong() // number channels for debugging
 
 class Channel<T>(val capacity: Int = 1) : SendChannel<T>, ReceiveChannel<T> {
-    init { require(capacity >= 1) }
+    init {
+        require(capacity >= 1)
+    }
+
     private val number = channelCounter.incrementAndGet() // for debugging
     private var closed = false
     private val buffer = ArrayDeque<T>(capacity)
@@ -37,7 +40,7 @@ class Channel<T>(val capacity: Int = 1) : SendChannel<T>, ReceiveChannel<T> {
     private val empty: Boolean get() = buffer.isEmpty()
     private val full: Boolean get() = buffer.size == capacity
 
-    suspend override fun send(value: T): Unit = suspendCoroutine sc@ { c ->
+    override suspend fun send(value: T): Unit = suspendCoroutine sc@{ c ->
         var receiveWaiter: Waiter<T>? = null
         locked {
             check(!closed) { CHANNEL_CLOSED }
@@ -77,7 +80,7 @@ class Channel<T>(val capacity: Int = 1) : SendChannel<T>, ReceiveChannel<T> {
     }
 
     @Suppress("UNCHECKED_CAST")
-    suspend override fun receive(): T = suspendCoroutine sc@ { c ->
+    override suspend fun receive(): T = suspendCoroutine sc@{ c ->
         var sendWaiter: Waiter<T>? = null
         var wasClosed = false
         var result: T? = null
@@ -102,7 +105,7 @@ class Channel<T>(val capacity: Int = 1) : SendChannel<T>, ReceiveChannel<T> {
             c.resume(result as T)
     }
 
-    suspend override fun receiveOrNull(): T? = suspendCoroutine sc@ { c ->
+    override suspend fun receiveOrNull(): T? = suspendCoroutine sc@{ c ->
         var sendWaiter: Waiter<T>? = null
         var result: T? = null
         locked {
@@ -150,16 +153,16 @@ class Channel<T>(val capacity: Int = 1) : SendChannel<T>, ReceiveChannel<T> {
         return true
     }
 
-    suspend override fun iterator(): ReceiveIterator<T> = ReceiveIteratorImpl()
+    override suspend fun iterator(): ReceiveIterator<T> = ReceiveIteratorImpl()
 
-    inner class ReceiveIteratorImpl: ReceiveIterator<T> {
+    inner class ReceiveIteratorImpl : ReceiveIterator<T> {
         private var computedNext = false
         private var hasNextValue = false
         private var nextValue: T? = null
 
         suspend override fun hasNext(): Boolean {
             if (computedNext) return hasNextValue
-            return suspendCoroutine sc@ { c ->
+            return suspendCoroutine sc@{ c ->
                 var sendWaiter: Waiter<T>? = null
                 locked {
                     if (empty) {
@@ -179,7 +182,7 @@ class Channel<T>(val capacity: Int = 1) : SendChannel<T>, ReceiveChannel<T> {
             }
         }
 
-        suspend override fun next(): T {
+        override suspend fun next(): T {
             // return value previous acquired by hasNext
             if (computedNext) {
                 @Suppress("UNCHECKED_CAST")
@@ -216,7 +219,7 @@ class Channel<T>(val capacity: Int = 1) : SendChannel<T>, ReceiveChannel<T> {
                     killList!!.add(unlinkFirstWaiter() ?: break)
                 }
             } else {
-                check (!hasWaiters) { "Channel with butter not-full and not-empty shall not have waiters"}
+                check(!hasWaiters) { "Channel with butter not-full and not-empty shall not have waiters" }
                 return // nothing to do
             }
         }
@@ -243,17 +246,18 @@ class Channel<T>(val capacity: Int = 1) : SendChannel<T>, ReceiveChannel<T> {
     }
 
     // debugging
-    private val waitersString: String get() {
-        val sb = StringBuilder("[")
-        var w = waiters.next!!
-        while (w != waiters) {
-            if (sb.length > 1) sb.append(", ")
-            sb.append(w)
-            w = w.next!!
+    private val waitersString: String
+        get() {
+            val sb = StringBuilder("[")
+            var w = waiters.next!!
+            while (w != waiters) {
+                if (sb.length > 1) sb.append(", ")
+                sb.append(w)
+                w = w.next!!
+            }
+            sb.append("]")
+            return sb.toString()
         }
-        sb.append("]")
-        return sb.toString()
-    }
 
     override fun toString(): String = locked {
         "Channel #$number closed=$closed, buffer=$buffer, waiters=$waitersString"
@@ -265,21 +269,38 @@ private val lock = ReentrantLock()
 
 private inline fun <R> locked(block: () -> R): R {
     lock.lock()
-    return try { block() } finally { lock.unlock() }
+    return try {
+        block()
+    } finally {
+        lock.unlock()
+    }
 }
 
 sealed class Waiter<T> {
     var next: Waiter<T>? = null
     var prev: Waiter<T>? = null
 
-    open fun resumeReceive(value: T) { throw IllegalStateException() }
-    open fun resumeClosed() { throw IllegalStateException() }
-    open fun getSendValue(): T { throw IllegalStateException() }
-    open fun resumeSend() { throw IllegalStateException() }
+    open fun resumeReceive(value: T) {
+        throw IllegalStateException()
+    }
+
+    open fun resumeClosed() {
+        throw IllegalStateException()
+    }
+
+    open fun getSendValue(): T {
+        throw IllegalStateException()
+    }
+
+    open fun resumeSend() {
+        throw IllegalStateException()
+    }
 
     val linked: Boolean get() = next != null
 
-    open fun unlink() { unlinkOne() }
+    open fun unlink() {
+        unlinkOne()
+    }
 
     fun unlinkOne() {
         val prev = this.prev!!
@@ -300,7 +321,9 @@ class SentinelWaiter<T> : Waiter<T>() {
         next = this
     }
 
-    override fun unlink() { throw IllegalStateException() }
+    override fun unlink() {
+        throw IllegalStateException()
+    }
 }
 
 class SendWaiter<T>(val c: Continuation<Unit>, val value: T) : Waiter<T>() {
@@ -319,9 +342,17 @@ class ReceiveOrNullWaiter<T>(val c: Continuation<T?>) : Waiter<T>() {
     override fun resumeClosed() = c.resume(null)
 }
 
-class IteratorHasNextWaiter<T>(val c: Continuation<Boolean>, val it: Channel<T>.ReceiveIteratorImpl) : Waiter<T>() {
-    override fun resumeReceive(value: T) { it.setNext(value); c.resume(true) }
-    override fun resumeClosed() { it.setClosed(); c.resume(false) }
+class IteratorHasNextWaiter<T>(
+    val c: Continuation<Boolean>,
+    val it: Channel<T>.ReceiveIteratorImpl
+) : Waiter<T>() {
+    override fun resumeReceive(value: T) {
+        it.setNext(value); c.resume(true)
+    }
+
+    override fun resumeClosed() {
+        it.setClosed(); c.resume(false)
+    }
 }
 
 data class Selector<R>(val c: Continuation<R>, val cases: List<SelectCase<*, R>>) {
@@ -345,16 +376,27 @@ sealed class SelectCase<T, R> : Waiter<T>() {
     }
 }
 
-class SendCase<T, R>(val c: SendChannel<T>, val value: T, val action: () -> R) : SelectCase<T, R>() {
+class SendCase<T, R>(val c: SendChannel<T>, val value: T, val action: () -> R) :
+    SelectCase<T, R>() {
     override fun getSendValue(): T = value
     override fun resumeSend() = selector.c.resume(action())
-    override fun resumeClosed() = selector.c.resumeWithException(IllegalStateException(CHANNEL_CLOSED))
+    override fun resumeClosed() = selector.c.resumeWithException(
+        IllegalStateException(
+            CHANNEL_CLOSED
+        )
+    )
+
     override fun select(selector: Selector<R>): Boolean = c.selectSend(this)
 }
 
 class ReceiveCase<T, R>(val c: ReceiveChannel<T>, val action: (T) -> R) : SelectCase<T, R>() {
     override fun resumeReceive(value: T) = selector.c.resume(action(value))
-    override fun resumeClosed() = selector.c.resumeWithException(NoSuchElementException(CHANNEL_CLOSED))
+    override fun resumeClosed() = selector.c.resumeWithException(
+        NoSuchElementException(
+            CHANNEL_CLOSED
+        )
+    )
+
     override fun select(selector: Selector<R>): Boolean = c.selectReceive(this)
 }
 

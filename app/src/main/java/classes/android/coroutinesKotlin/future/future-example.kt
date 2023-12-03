@@ -1,5 +1,6 @@
-package future
+package classes.android.coroutinesKotlin.future
 
+import future.future
 import java.util.concurrent.*
 
 fun foo(): CompletableFuture<String> = CompletableFuture.supplyAsync { "foo" }

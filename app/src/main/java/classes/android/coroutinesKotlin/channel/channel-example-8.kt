@@ -1,6 +1,9 @@
 package channel.example8
 
-import channel.*
+import classes.android.coroutinesKotlin.channel.Channel
+import classes.android.coroutinesKotlin.channel.SendChannel
+import classes.android.coroutinesKotlin.channel.go
+import classes.android.coroutinesKotlin.channel.mainBlocking
 import java.util.*
 
 // https://tour.golang.org/concurrency/7

@@ -1,4 +1,4 @@
-package generator
+package classes.android.coroutinesKotlin.generator
 
 import kotlin.coroutines.*
 import kotlin.coroutines.intrinsics.*

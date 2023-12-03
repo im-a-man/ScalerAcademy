@@ -1,7 +1,6 @@
-package channel.example1
+package classes.android.coroutinesKotlin.channel
 
-import channel.*
-import delay.*
+import classes.android.coroutinesKotlin.delay.delay
 
 // https://tour.golang.org/concurrency/1
 

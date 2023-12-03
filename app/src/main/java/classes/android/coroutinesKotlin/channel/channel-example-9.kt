@@ -1,8 +1,7 @@
-package channel.example9
+package classes.android.coroutinesKotlin.channel
 
-import channel.*
-import delay.*
-import mutex.*
+import classes.android.coroutinesKotlin.delay.delay
+import classes.android.coroutinesKotlin.mutex.Mutex
 
 // https://tour.golang.org/concurrency/9
 

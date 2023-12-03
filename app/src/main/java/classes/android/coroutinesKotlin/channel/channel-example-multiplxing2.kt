@@ -2,6 +2,10 @@ package channel.multiplexing2
 
 import channel.*
 import channel.boring.*
+import classes.android.coroutinesKotlin.channel.Channel
+import classes.android.coroutinesKotlin.channel.ReceiveChannel
+import classes.android.coroutinesKotlin.channel.go
+import classes.android.coroutinesKotlin.channel.mainBlocking
 
 // https://talks.golang.org/2012/concurrency.slide#27
 

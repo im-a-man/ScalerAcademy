@@ -1,4 +1,6 @@
-package generator
+package classes.android.coroutinesKotlin.generator
+
+import classes.android.coroutinesKotlin.generator.generate
 
 // Samples are inspired by https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/function*
 

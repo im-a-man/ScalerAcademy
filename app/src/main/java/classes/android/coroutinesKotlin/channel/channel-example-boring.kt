@@ -1,7 +1,10 @@
 package channel.boring
 
-import channel.*
-import delay.*
+import classes.android.coroutinesKotlin.channel.Channel
+import classes.android.coroutinesKotlin.channel.ReceiveChannel
+import classes.android.coroutinesKotlin.channel.go
+import classes.android.coroutinesKotlin.channel.mainBlocking
+import classes.android.coroutinesKotlin.delay.delay
 import java.util.*
 
 // https://talks.golang.org/2012/concurrency.slide#25

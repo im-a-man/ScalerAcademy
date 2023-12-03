@@ -1,5 +1,6 @@
-package suspendingSequence
+package classes.android.coroutinesKotlin.suspendingSequence
 
+import androidx.annotation.experimental.UseExperimental
 import kotlin.coroutines.*
 import kotlin.experimental.*
 
@@ -16,7 +17,8 @@ interface SuspendingIterator<out T> {
     suspend operator fun next(): T
 }
 
-@UseExperimental(ExperimentalTypeInference::class)
+@OptIn(ExperimentalTypeInference::class)
+@UseExperimental(UseExperimental::class)
 fun <T> suspendingSequence(
     context: CoroutineContext = EmptyCoroutineContext,
     @BuilderInference block: suspend SuspendingSequenceScope<T>.() -> Unit
