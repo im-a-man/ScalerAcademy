@@ -1,6 +1,6 @@
 package classes.scaler.DSA.MODULE3.strings
 
-import classes.scaler.GsonFactory.toJson
+import classes.GsonFactory.toJson
 
 
 /*

@@ -1,6 +1,6 @@
 package classes.scaler.interviewPreparation.codingProblems
 
-import classes.scaler.GsonFactory.toJson
+import classes.GsonFactory.toJson
 
 fun main() {
     println(swapOddEvenElements().toJson())

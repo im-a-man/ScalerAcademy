@@ -1,6 +1,6 @@
 package classes.scaler.interviewPreparation.codingProblems
 
-import classes.scaler.GsonFactory.toJson
+import classes.GsonFactory.toJson
 
 fun fibonacciByBottomUp(n: Int): Long {
     if (n <= 1)

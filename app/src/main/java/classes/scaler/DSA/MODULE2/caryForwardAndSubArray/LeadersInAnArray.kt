@@ -1,6 +1,7 @@
 package classes.scaler.DSA.MODULE2.caryForwardAndSubArray
 
-import classes.scaler.GsonFactory.toJson
+import classes.GsonFactory.toJson
+
 
 /*
 Problem Description

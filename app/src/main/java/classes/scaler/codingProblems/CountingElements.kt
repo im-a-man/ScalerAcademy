@@ -1,6 +1,6 @@
 package classes.scaler.interviewPreparation.codingProblems
 
-import classes.scaler.GsonFactory.toJson
+import classes.GsonFactory.toJson
 
 /*
 Count no of elements, only those elements whose greater by 1 element is present in array

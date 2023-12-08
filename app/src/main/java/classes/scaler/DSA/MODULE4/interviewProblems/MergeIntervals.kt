@@ -1,6 +1,6 @@
 package classes.scaler.DSA.MODULE4.interviewProblems
 
-import classes.scaler.GsonFactory.toJson
+import classes.GsonFactory.toJson
 
 /**
 Problem Description

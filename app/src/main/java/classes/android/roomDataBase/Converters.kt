@@ -16,15 +16,37 @@
 
 package classes.android.roomDataBase
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.room.TypeConverter
+import java.io.ByteArrayOutputStream
 import java.util.Calendar
 
 /**
  * Type converters to allow Room to reference complex data types.
+ * and we can annotate this to any level DataBase, Entity, DAO, Model
+ * So their scope of uses will also be set accordingly.
+ * if we annotate this to RoomDatabase then Database and All its Entity and DAO will use this.
  */
 class Converters {
-    @TypeConverter fun calendarToDatestamp(calendar: Calendar): Long = calendar.timeInMillis
+    @TypeConverter
+    fun calendarToDatestamp(calendar: Calendar): Long = calendar.timeInMillis
 
-    @TypeConverter fun datestampToCalendar(value: Long): Calendar =
+    @TypeConverter
+    fun datestampToCalendar(value: Long): Calendar =
         Calendar.getInstance().apply { timeInMillis = value }
+}
+
+class ImageConverters {
+    @TypeConverter
+    fun fromBitmap(bitmap: Bitmap): ByteArray {
+        val outputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+        return outputStream.toByteArray()
+    }
+
+    @TypeConverter
+    fun toBitmap(byteArray: ByteArray): Bitmap {
+        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+    }
 }

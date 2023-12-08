@@ -1,6 +1,6 @@
 package classes.scaler.DSA.MODULE2.prefixSumArray
 
-import classes.scaler.GsonFactory.toJson
+import classes.GsonFactory.toJson
 
 //First we have prefixSum Array okay
 //Then we need to find the sum of original arrays using prefix sum

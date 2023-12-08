@@ -1,6 +1,6 @@
 package classes.scaler.DSA.MODULE3.sortingBasics
 
-import classes.scaler.GsonFactory.toJson
+import classes.GsonFactory.toJson
 
 fun main() {
     val array = intArrayOf(3, 17, 1, 16, 2, 5)

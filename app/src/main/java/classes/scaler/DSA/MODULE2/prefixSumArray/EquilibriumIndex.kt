@@ -1,6 +1,6 @@
 package classes.scaler.DSA.MODULE2.prefixSumArray
 
-import classes.scaler.GsonFactory.toJson
+import classes.GsonFactory.toJson
 
 /*
 Problem Description

@@ -1,6 +1,6 @@
 package classes.scaler.interviewPreparation.codingProblems
 
-import classes.scaler.GsonFactory.toJson
+import classes.GsonFactory.toJson
 
 /*
 Two strings called Anagram string if they have same characters and same characters count

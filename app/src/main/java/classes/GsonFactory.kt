@@ -1,5 +1,7 @@
 package classes
 
+import android.content.Context
+import classes.android.roomDataBase.AppDatabase
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 
@@ -8,14 +10,12 @@ object GsonFactory {
     Creating a singleton Gson object using Kotlin.
     It ensures that the Gson instance is lazily initialized in a thread-safe manner
      * */
-    private var gson: Gson? = null
-    private fun getGson() = synchronized(this) {
-        if (gson == null)
-            gson = Gson()
-        return@synchronized gson
-    }
+    @Volatile
+    private var INSTANCE: Gson? = null
+    private fun getInstance(): Gson =
+        INSTANCE ?: synchronized(this) { INSTANCE ?: Gson().also { INSTANCE = it } }
 
-    fun Any?.toJson() = getGson()?.toJson(this)
+    fun Any?.toJson(): String? = getInstance().toJson(this)
 }
 
 object GsonFactory1 {
@@ -30,7 +30,7 @@ object GsonFactory1 {
         gsonBuilder.configure()
     }
 
-    fun Any?.toJson() = gson.toJson(this)
+    fun Any?.toJson(): String? = gson.toJson(this)
 }
 
 /**
@@ -40,4 +40,4 @@ object GsonFactory1 {
  * }
  * This is also safe because Kotlin objects are initialized in a thread-safe manner,
  * and there is no need for explicit synchronization.
-* */
+ * */

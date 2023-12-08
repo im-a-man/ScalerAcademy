@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("kotlin-parcelize")//Provide implementation of Parcelable interface using @Parcelize annotation
 }
 
 android {
@@ -29,6 +31,10 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
     }
     kotlinOptions {
         jvmTarget = "1.8"
@@ -79,4 +85,23 @@ dependencies {
     implementation("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-compiler-processing:2.6.1")
     implementation("androidx.room:room-coroutines:2.1.0-alpha04")
+
+
+    val work_version = "2.9.0"
+    // (Java only)
+    implementation("androidx.work:work-runtime:$work_version")
+    // Kotlin + coroutines
+    implementation("androidx.work:work-runtime-ktx:$work_version")
+    // optional - RxJava2 support
+    implementation("androidx.work:work-rxjava2:$work_version")
+    // optional - GCMNetworkManager support
+    implementation("androidx.work:work-gcm:$work_version")
+    // optional - Test helpers
+    androidTestImplementation("androidx.work:work-testing:$work_version")
+    // optional - MultiProcess support
+    implementation("androidx.work:work-multiprocess:$work_version")
+
+
+    //Data Binding
+    implementation("androidx.databinding:baseLibrary:3.2.0-alpha11")
 }

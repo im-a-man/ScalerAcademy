@@ -27,8 +27,12 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
 
-@Database(entities = [(Users::class)], version = 1, exportSchema = false)
-@TypeConverters(Converters::class)
+@Database(
+    entities = [(UsersEntity::class)],
+    version = 1,
+    exportSchema = false
+)
+@TypeConverters(*[(Converters::class), (ImageConverters::class)])
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun usersDao(): UsersDao
@@ -62,18 +66,18 @@ abstract class AppDatabase : RoomDatabase() {
                 })
                 .addMigrations(MIGRATION_1_2)
                 .addCallback(object : RoomDatabase.Callback() {
-                    override fun onCreate(db: SupportSQLiteDatabase) {
-                        // Create and pre-populate the database. See this article for more details:
-                        // https://medium.com/google-developers/7-pro-tips-for-room-fbadea4bfbd1#4785
-                        super.onCreate(db)
+                    override fun onOpen(db: SupportSQLiteDatabase) {
+                        super.onOpen(db)
                     }
 
                     override fun onDestructiveMigration(db: SupportSQLiteDatabase) {
                         super.onDestructiveMigration(db)
                     }
 
-                    override fun onOpen(db: SupportSQLiteDatabase) {
-                        super.onOpen(db)
+                    override fun onCreate(db: SupportSQLiteDatabase) {
+                        // Create and pre-populate the database. See this article for more details:
+                        // https://medium.com/google-developers/7-pro-tips-for-room-fbadea4bfbd1#4785
+                        super.onCreate(db)
                     }
                 })
                 .build()

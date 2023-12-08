@@ -26,13 +26,13 @@ import androidx.room.Upsert
 @Dao
 interface UsersDao {
     @Query("SELECT * FROM users")
-    fun getAll(): LiveData<List<Users>>
+    fun getAll(): LiveData<List<UsersEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(comments: List<Users>)
+    fun insertAll(comments: List<UsersEntity>)
 
     @Upsert
-    fun upsertAll(comments: List<Users>)
+    fun upsertAll(comments: List<UsersEntity>)
 
     @Query("DELETE FROM users")
     fun deleteAll()

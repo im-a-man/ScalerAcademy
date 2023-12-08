@@ -1,7 +1,7 @@
 package classes.scaler.DSA.MODULE3.arrayMemoryManagement
 
 import classes.scaler.DSA.MODULE2.introToArray.reversePart
-import classes.scaler.GsonFactory.toJson
+import classes.GsonFactory.toJson
 import com.google.gson.Gson
 
 

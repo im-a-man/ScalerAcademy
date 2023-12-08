@@ -1,4 +1,4 @@
-package classes.scaler.masterClasses
+package classes.android.masterClasses
 
 fun main() {
     val num: Int = 10

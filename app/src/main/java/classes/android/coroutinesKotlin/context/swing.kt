@@ -1,6 +1,5 @@
 package classes.android.coroutinesKotlin.context
 
-import javax.swing.*
 import kotlin.coroutines.*
 
 object Swing : AbstractCoroutineContextElement(ContinuationInterceptor), ContinuationInterceptor {

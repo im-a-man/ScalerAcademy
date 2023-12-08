@@ -13,8 +13,18 @@ fun main() {
     Step 2 — Update model classes to entities
     Step 3 — Create Data Access Objects (DAOs)
     Step 4 — Create the database
-    Step 5 — Update the Repository to use Room
-    * */
+    Step 5 — Create Data source
+    Step 6 — Create and Update the Repository to use Room
+     * */
+
+    /**
+     * Migrate SQLite to RoomDatabase
+
+    First PR: Create your entity classes, the RoomDatabase,
+    and update from your custom SQLiteOpenHelper to SupportSQLiteOpenHelper.
+
+    Following PRs: Gradually create DAOs to replace Cursor and ContentValue code.
+     * */
 
     /**
      * 7 Pro-tips for Room=> https://medium.com/androiddevelopers/7-pro-tips-for-room-fbadea4bfbd1#4785
@@ -101,5 +111,5 @@ fun main() {
      *
      *
      * 7. Avoid false positive notifications for observable queries
-    * */
+     * */
 }
