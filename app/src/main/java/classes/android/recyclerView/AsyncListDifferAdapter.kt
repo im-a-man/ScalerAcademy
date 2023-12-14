@@ -1,5 +1,6 @@
 package classes.android.recyclerView
 
+import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -14,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
  * The AsyncListDiffer can consume the values from a LiveData of List and present the data simply
  * for an adapter. It computes differences in list contents via DiffUtil on a background thread as
  * new Lists are received.
-* */
+ * */
 
 class AsyncListDifferAdapter : RecyclerView.Adapter<AsyncListDifferAdapter.ViewHolder>() {
     class User(
@@ -76,5 +77,6 @@ class AsyncListDifferAdapter : RecyclerView.Adapter<AsyncListDifferAdapter.ViewH
 
         }
     }
+
     class ViewHolder(item: View) : RecyclerView.ViewHolder(item)
 }

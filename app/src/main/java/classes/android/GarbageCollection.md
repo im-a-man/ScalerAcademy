@@ -1,8 +1,4 @@
-package classes.android.masterClasses
-
-fun main() {
-    /**
-    In Java, there are four types of references differentiated by the way by which they are garbage collected.
+In Java, there are four types of references differentiated by the way by which they are garbage collected.
 
     Strong References
     Weak References
@@ -59,5 +55,3 @@ fun main() {
     The objects which are being referenced by phantom references are eligible for garbage collection. But, before removing them from memory, JVM puts them in a queue called ‘reference queue’. They are put in a reference queue after calling finalize() method on them. To create such references java.lang.ref.PhantomReference class is used.
 
     =================================================================
-    * */
-}

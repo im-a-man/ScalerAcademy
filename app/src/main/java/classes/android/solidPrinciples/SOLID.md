@@ -1,10 +1,3 @@
-package classes.android.masterClasses
-
-fun main() {
-//https://medium.com/huawei-developers/kotlin-solid-principles-tutorial-examples-192bf8c049dd
-}
-
-/**
 1=>Single Responsibility Principle (SRP):
 Problem:> A class with multiple responsibilities is harder to understand, maintain, and modify.
 Changes to one responsibility may inadvertently affect another.
@@ -26,7 +19,8 @@ Problem:> If a subclass cannot be substituted for its base class without affecti
 of the program, it can lead to unexpected behavior.
 
 Solution:> LSP ensures that inheritance hierarchies are designed in a way that subclasses can be
-used interchangeably with their base classes. This promotes polymorphism and helps prevent unexpected
+used interchangeably with their base classes. This promotes polymorphism and helps prevent
+unexpected
 issues when using derived classes.
 
 4=>Interface Segregation Principle (ISP):
@@ -48,9 +42,14 @@ and easier to adapt to changes.
 
 In summary, each SOLID principle addresses specific challenges in software design:
 
-SRP focuses on maintaining code clarity and manageability by advocating for single responsibility.
-OCP emphasizes extensibility without modifying existing code, promoting the use of abstractions and interfaces.
-LSP ensures that inheritance hierarchies maintain substitutability, preventing unexpected behavior.
-ISP encourages the creation of small, specific interfaces, reducing unnecessary dependencies and promoting a cleaner design.
-DIP promotes the inversion of dependencies, making systems more modular, flexible, and adaptable to change.
- * */
+# SRP focuses on maintaining code clarity and manageability by advocating for single responsibility.
+Each class should have only one responsibility, or one reason to change.
+
+# OCP emphasizes extensibility without modifying existing code, promoting the use of abstractions and interfaces.
+
+# LSP ensures that inheritance hierarchies maintain substitutability, preventing unexpected behavior.
+chile must be a substitute of parent, or should comptable with system or parent contract
+
+# ISP encourages the creation of small, specific interfaces, reducing unnecessary dependencies and promoting a cleaner design.
+
+# DIP promotes the inversion of dependencies, making systems more modular, flexible, and adaptable to change.

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
  * a list of update operations that converts the first list into the second one.
  * It can be used to calculate updates for a RecyclerView Adapter.
  * See, AsyncListDiffer which can simplify the use of DiffUtil on a background thread.
-* */
+ * */
 
 class DiffUtilAdapter : RecyclerView.Adapter<DiffUtilAdapter.ViewHolder>() {
     class User(

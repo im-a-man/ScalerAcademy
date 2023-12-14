@@ -108,7 +108,7 @@ class MyBindingMethods
     `@BindingAdapter` is used to define how data should be bound to specific attributes in XML layouts.
     * */
 @BindingAdapter("app:popularityIcon")
-fun popularityIcon(view: ImageView) {
+fun popularityIcon(view: ImageView,urlString: String) {
     view.setImageResource(android.R.drawable.ic_secure)
 }
 
@@ -118,8 +118,9 @@ object MyBindingConversions {
     to define a method that converts a specific type to another type when binding data.
     This can be useful when you want to perform automatic type conversion for data binding expressions.
     * */
+    @JvmStatic//To ignore error
     @BindingConversion
-    fun convertIntToString(value: Int): String {
+    public fun convertIntToString(value: Int): String {
         return value.toString()
     }
     /*

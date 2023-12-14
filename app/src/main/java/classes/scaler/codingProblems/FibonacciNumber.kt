@@ -36,8 +36,7 @@ fun fibonacciByMemoizationApproach(n: Int, memo: HashMap<Int, Long>): Long {
     if (memo.containsKey(n))
         return (memo[n] ?: 0L)
 
-    val fibValue =
-        fibonacciByMemoizationApproach(n - 1, memo) + fibonacciByMemoizationApproach(n - 2, memo)
+    val fibValue = fibonacciByMemoizationApproach(n - 1, memo) + fibonacciByMemoizationApproach(n - 2, memo)
     memo[n] = fibValue
     return fibValue
 }
